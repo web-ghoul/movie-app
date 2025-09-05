@@ -1,11 +1,13 @@
 // app/store.ts
 import { configureStore } from "@reduxjs/toolkit";
-import trendyMoviesReducer from "./trendyMoviesSlice";
-import topMoviesReducer from "./topRatedMoviesSlice";
 import genresReducer from "./genresSlice";
+import topMoviesReducer from "./topRatedMoviesSlice";
+import trendyMoviesReducer from "./trendyMoviesSlice";
+import trendyTVReducer from "./trendyTVSlice";
 
 export const store = configureStore({
   reducer: {
+    trendyTV: trendyTVReducer,
     trendyMovies: trendyMoviesReducer,
     topRatedMovies: topMoviesReducer,
     genres: genresReducer,

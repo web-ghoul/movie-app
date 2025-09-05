@@ -21,4 +21,4 @@ interface GenreTypes {
   name: string;
 }
 
-export type { MovieTypes, GenreTypes };
+export type { GenreTypes, MovieTypes };

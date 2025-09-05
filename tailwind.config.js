@@ -4,10 +4,12 @@ export default {
   theme: {
     extend: {
       screens: {
-        "max-xl": { max: "1200px" },
-        "max-lg": { max: "992px" },
-        "max-md": { max: "768px" },
-        "max-sm": { max: "520px" },
+        "3xl": { max: "1560px" },
+        "2xl": { max: "1440px" },
+        xl: { max: "1200px" },
+        lg: { max: "992px" },
+        md: { max: "768px" },
+        sm: { max: "520px" },
       },
       colors: {
         primary: "#dc2626",
