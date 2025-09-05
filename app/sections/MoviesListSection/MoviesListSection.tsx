@@ -10,11 +10,12 @@ import MovieCard from "~/components/MovieCard/MovieCard";
 import Title from "~/components/Title/Title";
 import { RootState } from "~/store/store";
 
-const MoviesListSection = ({ title, variant, cats }: { title: string; variant: "trendy" | "rated" | "genres"; cats?: string[] }) => {
+const MoviesListSection = ({ title, variant, cats }: { title: string; variant: "trendy" | "rated" | "upcomming" | "genres"; cats?: string[] }) => {
   const { results: trendyMovies } = useSelector((state: RootState) => state.trendyMovies);
   const { results: topRatedMovies } = useSelector((state: RootState) => state.topRatedMovies);
+  const { results: upcomingMovies } = useSelector((state: RootState) => state.upcomingMovies);
 
-  const movies = variant === "trendy" ? trendyMovies : variant === "rated" ? topRatedMovies : []
+  const movies = variant === "trendy" ? trendyMovies : variant === "rated" ? topRatedMovies : variant === "upcomming" ? upcomingMovies : []
 
   return (
     <section className="grid justify-stretch items-center gap-6 contain contain_y">
