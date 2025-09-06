@@ -3,10 +3,12 @@ import { createContext, useContext, useReducer } from "react";
 
 type AppState = {
   sidebar: boolean;
+  tab: string;
 };
 
 type AppAction =
   | { type: "sidebar"; payload: boolean }
+  | { type: "tab"; payload: string }
 
 type AppContextType = {
   state: AppState;
@@ -17,12 +19,15 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const initialState: AppState = {
   sidebar: false,
+  tab: "movies",
 };
 
 function AppReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case "sidebar":
       return { ...state, sidebar: action.payload };
+    case "tab":
+      return { ...state, tab: action.payload };
     default:
       return state;
   }

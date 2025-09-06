@@ -1,4 +1,4 @@
-import { useNavigate } from "@remix-run/react";
+import { useLocation, useNavigate } from "@remix-run/react";
 import { AiOutlineHome } from "react-icons/ai";
 import { IoSearch } from "react-icons/io5";
 import { useApp } from "~/contexts/AppContext";
@@ -9,9 +9,10 @@ import Logo from "../Logo/Logo";
 const Header = () => {
   const navigate = useNavigate();
   const { dispatch: dispatchApp } = useApp();
+  const { pathname } = useLocation()
 
   return (
-    <header className="absolute z-[100] top-0 contain h-[100px] flex justify-between items-center gap-10 w-screen">
+    <header className={`z-[100] top-0 contain h-[100px] flex justify-between items-center gap-10 w-screen ${pathname === "/" ? "absolute" : "relative"}`}>
       <Logo />
 
       <div className="flex justify-center items-center gap-4">

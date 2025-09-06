@@ -8,13 +8,14 @@ import MoviesListSection from "~/sections/MoviesListSection/MoviesListSection";
 import { getGenres } from "~/store/genresSlice";
 import { AppDispatch } from "~/store/store";
 import { getTopRatedMovies } from "~/store/topRatedMoviesSlice";
+import { getTopRatedTV } from "~/store/topRatedTVSlice";
 import { getTrendyMovies } from "~/store/trendyMoviesSlice";
 import { getTrendyTV } from "~/store/trendyTVSlice";
 import { getUpcomingMovies } from "~/store/upcomingMoviesSlice";
 import { GenreTypes, MovieTypes } from "~/types/app";
 
 export async function loader() {
-  const [trendyMoviesRes, trendyTVRes, upcomingMoviesRes, genresRes, topMoviesRes] = await Promise.all([
+  const [trendyMoviesRes, trendyTVRes, upcomingMoviesRes, genresRes, topMoviesRes, topTVRes] = await Promise.all([
     axios.get("https://api.themoviedb.org/3/trending/movie/day", {
       headers: { Authorization: `Bearer ${process.env.TOKEN}` },
     }),
@@ -28,6 +29,9 @@ export async function loader() {
       headers: { Authorization: `Bearer ${process.env.TOKEN}` },
     }),
     axios.get("https://api.themoviedb.org/3/movie/top_rated", {
+      headers: { Authorization: `Bearer ${process.env.TOKEN}` },
+    }),
+    axios.get("https://api.themoviedb.org/3/tv/top_rated", {
       headers: { Authorization: `Bearer ${process.env.TOKEN}` },
     }),
   ]);
@@ -53,6 +57,12 @@ export async function loader() {
     total_results: number;
   } = await topMoviesRes.data;
 
+  const topTV: {
+    page: number;
+    results: MovieTypes[];
+    total_pages: number;
+    total_results: number;
+  } = await topTVRes.data;
 
   const upcomingMovies: {
     page: number;
@@ -67,19 +77,21 @@ export async function loader() {
     trendyMovies,
     trendyTV,
     topMovies,
+    topTV,
     upcomingMovies,
     genres,
   });
 }
 
 const _index = () => {
-  const { trendyMovies, trendyTV, topMovies, upcomingMovies, genres } = useLoaderData<typeof loader>();
+  const { trendyMovies, trendyTV, topMovies, topTV, upcomingMovies, genres } = useLoaderData<typeof loader>();
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(getTrendyMovies(trendyMovies));
     dispatch(getTrendyTV(trendyTV));
     dispatch(getTopRatedMovies(topMovies));
+    dispatch(getTopRatedTV(topTV));
     dispatch(getUpcomingMovies(upcomingMovies));
     dispatch(getGenres(genres));
   }, [dispatch]);

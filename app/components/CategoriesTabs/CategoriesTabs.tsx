@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { useApp } from "~/contexts/AppContext";
 
 const CategoriesTabs = ({ cats }: { cats: string[] }) => {
+    const { dispatch: dispatchApp } = useApp()
     const [active, setActive] = useState(0);
     const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number }>({
         left: 0,
@@ -29,7 +31,10 @@ const CategoriesTabs = ({ cats }: { cats: string[] }) => {
             {cats.map((label, index) => (
                 <span
                     key={index}
-                    onClick={() => setActive(index)}
+                    onClick={() => {
+                        dispatchApp({ type: "tab", payload: label.toLowerCase() })
+                        setActive(index)
+                    }}
                     className={`py-2 cursor-pointer subtitle_1 font-[600] transition-colors ${active === index ? "text-primary" : "text-white"
                         }`}
                 >

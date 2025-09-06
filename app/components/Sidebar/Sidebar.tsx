@@ -16,7 +16,7 @@ const Sidebar = () => {
           }`}
       >
         <div className="flex justify-between items-center gap-10 p-6 border-b-[1px] border-b-neutral-800 border-b-solid">
-          <h4>My Account</h4>
+          <h5>My Account</h5>
 
           <IconButton
             onClick={() => dispatchApp({ type: "sidebar", payload: false })}
