@@ -14,7 +14,7 @@ const SearchSection = () => {
         </div>
         <h6 className="text-neutral-300">Search through thousands of movies, TV shows, and anime series</h6>
       </div>
-      <div className="grid grid-cols-[auto,1fr] justify-stretch items-center gap-2 p-4 bg-neutral-900 border-[1px] border-neutral-700 rounded-xl w-[55vw]">
+      <div className="grid grid-cols-[auto,1fr] justify-stretch items-center gap-2 p-4 bg-neutral-900 border-[1px] border-neutral-700 rounded-xl w-[50vw] 3xl:w-[55vw] 2xl:w-[65vw] lg:w-[80vw] md:!w-full">
         <DropDown />
         <Input name={"search"} placeholder={"Type here to search..."} icon={<IoSearch />} />
       </div>

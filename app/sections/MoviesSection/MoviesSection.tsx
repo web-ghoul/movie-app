@@ -5,8 +5,8 @@ import { MovieTypes } from '~/types/app';
 const MoviesSection = ({ title, movies }: { title: string; movies: MovieTypes[] }) => {
 
     return (
-        <section className='grid justify-stretch items-center gap-6 contain contain_y'>
-            <div className="grid justify-stretch items-center gap-2">
+        <section className='grid justify-stretch items-center gap-8 contain contain_y'>
+            <div className="grid justify-stretch items-center gap-1">
                 <Title text={title} />
                 <span className="subtitle_1 text-neutral-600">{movies.length} results found</span>
             </div>

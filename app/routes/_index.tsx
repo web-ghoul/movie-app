@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useNavigation } from "@remix-run/react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -7,7 +7,7 @@ import HeroSection from "~/sections/HeroSection/HeroSection";
 import MoviesListSection from "~/sections/MoviesListSection/MoviesListSection";
 import { getGenres } from "~/store/genresSlice";
 import { AppDispatch } from "~/store/store";
-import { getTopRatedMovies } from "~/store/topRatedMoviesSlice";
+import { getTopRatedMovies, topRatedMoviesLoading } from "~/store/topRatedMoviesSlice";
 import { getTopRatedTV } from "~/store/topRatedTVSlice";
 import { getTrendyMovies } from "~/store/trendyMoviesSlice";
 import { getTrendyTV } from "~/store/trendyTVSlice";
@@ -86,15 +86,19 @@ export async function loader() {
 const _index = () => {
   const { trendyMovies, trendyTV, topMovies, topTV, upcomingMovies, genres } = useLoaderData<typeof loader>();
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigation()
 
   useEffect(() => {
+    if (navigate.state === "loading") {
+      dispatch(topRatedMoviesLoading())
+    }
     dispatch(getTrendyMovies(trendyMovies));
     dispatch(getTrendyTV(trendyTV));
     dispatch(getTopRatedMovies(topMovies));
     dispatch(getTopRatedTV(topTV));
     dispatch(getUpcomingMovies(upcomingMovies));
     dispatch(getGenres(genres));
-  }, [dispatch]);
+  }, [dispatch, navigate.state, trendyMovies, trendyTV, topMovies, topTV, genres, upcomingMovies]);
 
   return (
     <>

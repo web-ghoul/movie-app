@@ -7,6 +7,7 @@ export interface TopRatedMoviesState {
   total_pages: number;
   total_results: number;
   loading: boolean;
+  error: boolean;
 }
 
 const initialState: TopRatedMoviesState = {
@@ -15,22 +16,32 @@ const initialState: TopRatedMoviesState = {
   total_pages: 0,
   total_results: 0,
   loading: true,
+  error: false,
 };
 
 const topRatedMoviesSlice = createSlice({
   name: "topRatedMovies",
   initialState,
   reducers: {
+    topRatedMoviesLoading: (state) => {
+      state.loading = true
+      state.error = false
+    },
     getTopRatedMovies: (state, action) => {
       state.loading = false;
+      state.error = false
       state.page = action.payload.page;
       state.results = action.payload.results;
       state.total_pages = action.payload.total_pages;
       state.total_pages = action.payload.total_pages;
     },
+    topRatedMoviesError: (state) => {
+      state.loading = false
+      state.error = true
+    },
   },
 });
 
-export const { getTopRatedMovies } = topRatedMoviesSlice.actions;
+export const { getTopRatedMovies, topRatedMoviesLoading, topRatedMoviesError } = topRatedMoviesSlice.actions;
 
 export default topRatedMoviesSlice.reducer;
