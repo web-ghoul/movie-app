@@ -16,7 +16,7 @@ const initialState: UpcomingMoviesState = {
   total_pages: 0,
   total_results: 0,
   loading: true,
-  error: true,
+  error: false,
 };
 
 const upcomingMoviesSlice = createSlice({

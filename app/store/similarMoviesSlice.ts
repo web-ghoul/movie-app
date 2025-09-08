@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { MovieTypes } from "~/types/app";
 
-export interface TrendyTVState {
+export interface SimilarMoviesState {
   page: number;
   results: MovieTypes[];
   total_pages: number;
@@ -10,7 +10,7 @@ export interface TrendyTVState {
   error: boolean;
 }
 
-const initialState: TrendyTVState = {
+const initialState: SimilarMoviesState = {
   page: 0,
   results: [],
   total_pages: 0,
@@ -19,15 +19,15 @@ const initialState: TrendyTVState = {
   error: false,
 };
 
-const trendyTVSlice = createSlice({
-  name: "trendyTV",
+const similarMoviesSlice = createSlice({
+  name: "similarMovies",
   initialState,
   reducers: {
-    trendyTVLoading: (state) => {
+    similarMoviesLoading: (state) => {
       state.loading = true;
       state.error = false;
     },
-    getTrendyTV: (state, action) => {
+    getSimilarMovies: (state, action) => {
       state.loading = false;
       state.error = false;
       state.page = action.payload.page;
@@ -35,14 +35,14 @@ const trendyTVSlice = createSlice({
       state.total_pages = action.payload.total_pages;
       state.total_pages = action.payload.total_pages;
     },
-    trendyTVError: (state) => {
+    similarMoviesError: (state) => {
       state.loading = false;
       state.error = true;
     },
   },
 });
 
-export const { getTrendyTV, trendyTVError, trendyTVLoading } =
-  trendyTVSlice.actions;
+export const { getSimilarMovies, similarMoviesLoading, similarMoviesError } =
+  similarMoviesSlice.actions;
 
-export default trendyTVSlice.reducer;
+export default similarMoviesSlice.reducer;

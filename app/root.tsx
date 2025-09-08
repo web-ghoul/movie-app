@@ -1,7 +1,7 @@
 import { LinksFunction, MetaFunction } from "@remix-run/node";
 import { Links, Meta, Outlet, Scripts } from "@remix-run/react";
 import { Provider } from "react-redux";
-import 'swiper/css';
+import "swiper/css";
 import logo from "./assets/images/logo.png";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
@@ -25,31 +25,6 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-// export async function loader() {
-//   const [moviesRes, genresRes] = await Promise.all([
-//     axios.get("https://api.themoviedb.org/3/trending/movie/day", {
-//       headers: { Authorization: `Bearer ${process.env.TOKEN}` },
-//     }),
-//     axios.get("https://api.themoviedb.org/3/genre/movie/list", {
-//       headers: { Authorization: `Bearer ${process.env.TOKEN}` },
-//     }),
-//   ]);
-
-//   const movies: {
-//     page: number;
-//     results: MovieTypes[];
-//     total_pages: number;
-//     total_results: number;
-//   } = await moviesRes.data;
-
-//   const genres: GenreTypes[] = await genresRes.data.genres;
-
-//   return json({
-//     movies,
-//     genres,
-//   });
-// }
-
 export default function App() {
   return (
     <html>
@@ -71,16 +46,18 @@ export default function App() {
       <body
         className={`min-h-screen w-screen max-w-screen overflow-x-hidden bg-primary_bg`}
       >
-        <main className={`grid justify-stretch items-center gap-6`}>
-          <Provider store={store}>
-            <AppProvider>
+        <Provider store={store}>
+          <AppProvider>
+            <main
+              className={`grid justify-stretch items-center gap-6 content-between self-stretch min-h-screen`}
+            >
               <Header />
               <Sidebar />
               <Outlet />
               <Footer />
-            </AppProvider>
-          </Provider>
-        </main>
+            </main>
+          </AppProvider>
+        </Provider>
         <Scripts />
       </body>
     </html>
