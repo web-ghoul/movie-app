@@ -1,5 +1,6 @@
 import { LinksFunction, MetaFunction } from "@remix-run/node";
-import { Links, Meta, Outlet, Scripts } from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts, useLocation } from "@remix-run/react";
+import { useEffect } from "react";
 import { Provider } from "react-redux";
 import "swiper/css";
 import logo from "./assets/images/logo.png";
@@ -26,6 +27,12 @@ export const meta: MetaFunction = () => {
 };
 
 export default function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+
   return (
     <html>
       <head>
@@ -49,7 +56,7 @@ export default function App() {
         <Provider store={store}>
           <AppProvider>
             <main
-              className={`grid justify-stretch items-center gap-6 content-between self-stretch min-h-screen`}
+              className={`grid justify-stretch items-center gap-6 content-between self-stretch min-h-screen md:gap-5 sm:!gap-4`}
             >
               <Header />
               <Sidebar />

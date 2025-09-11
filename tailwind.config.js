@@ -21,6 +21,9 @@ export default {
           max: "768px",
         },
         sm: {
+          max: "600px",
+        },
+        xs: {
           max: "520px",
         },
       },

@@ -1,4 +1,6 @@
+import LoadingMovieCard from "~/components/MovieCard/LoadingMovieCard";
 import MovieCard from "~/components/MovieCard/MovieCard";
+import NoResultsFound from "~/components/NoResultsFound/NoResultsFound";
 import Title from "~/components/Title/Title";
 import { MovieTypes } from "~/types/app";
 
@@ -6,10 +8,12 @@ const MoviesSection = ({
   title,
   movies,
   id,
+  loading,
 }: {
   title: string;
   movies: MovieTypes[];
   id?: string;
+  loading?: boolean;
 }) => {
   return (
     <section
@@ -18,15 +22,23 @@ const MoviesSection = ({
     >
       <div className="grid justify-stretch items-center gap-1">
         <Title text={title} />
-        <span className="subtitle_1 text-neutral-600">
-          {movies.length} results found
-        </span>
+        <h6 className="text-neutral-500">{movies.length} results found</h6>
       </div>
-      <div className="grid grid-cols-6 justify-stretch items-center gap-4">
-        {movies.map((movie, i) => (
-          <MovieCard key={i} movie={movie} />
-        ))}
-      </div>
+      {movies.length > 0 ? (
+        <div className="grid grid-cols-6 justify-stretch items-center gap-4 3xl:grid-cols-5 md:!grid-cols-3 xs:!grid-cols-2">
+          {movies.map((movie, i) => (
+            <MovieCard key={i} movie={movie} />
+          ))}
+        </div>
+      ) : loading ? (
+        <div className="grid grid-cols-6 justify-stretch items-center gap-4">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <LoadingMovieCard />
+          ))}
+        </div>
+      ) : (
+        <NoResultsFound />
+      )}
     </section>
   );
 };

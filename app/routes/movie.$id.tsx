@@ -80,7 +80,7 @@ export default function MoviePage() {
     dispatch(getGenres(genres));
     dispatch(getCast(cast));
     dispatch(getSimilarMovies(similarMovies));
-  }, [dispatch]);
+  }, [dispatch, movie, videos, genres, similarMovies, cast]);
 
   return (
     <>

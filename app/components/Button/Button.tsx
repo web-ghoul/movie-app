@@ -13,7 +13,7 @@ const Button = ({
     <button
       type={"button"}
       onClick={onClick}
-      className={`outline-none border-[1px] transition-all border-solid border-white rounded-xl px-5 py-2 flex justify-center items-center gap-3 font-[600] button hover:scale-110 hover:font-[700] ${
+      className={`outline-none border-[1px] transition-all border-solid border-white rounded-xl px-5 py-2 flex justify-center items-center gap-3 font-[600] button hover:scale-110 hover:font-[700] md:px-4 sm:py-[6px] ${
         variant === "primary"
           ? "bg-white text-black "
           : variant === "glassy"
@@ -21,7 +21,7 @@ const Button = ({
           : variant === "logout"
           ? "bg-primary text-white !border-primary hover:shadow-md hover:shadow-primary !scale-100"
           : variant === "icon" &&
-            "glassy bg-white !p-0 h-[45px] w-[45px] !rounded-full"
+            "glassy bg-white !p-0 h-[45px] w-[45px] md:h-[40px] md:w-[40px] sm:!w-[37.5px] sm:!h-[37.5px]  !rounded-full"
       }`}
     >
       {children}

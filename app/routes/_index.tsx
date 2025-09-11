@@ -1,4 +1,4 @@
-import { json } from "@remix-run/node";
+import { defer } from "@remix-run/node";
 import { useLoaderData, useNavigation } from "@remix-run/react";
 import axios from "axios";
 import { useEffect } from "react";
@@ -7,7 +7,10 @@ import HeroSection from "~/sections/HeroSection/HeroSection";
 import MoviesListSection from "~/sections/MoviesListSection/MoviesListSection";
 import { getGenres } from "~/store/genresSlice";
 import { AppDispatch } from "~/store/store";
-import { getTopRatedMovies, topRatedMoviesLoading } from "~/store/topRatedMoviesSlice";
+import {
+  getTopRatedMovies,
+  topRatedMoviesLoading,
+} from "~/store/topRatedMoviesSlice";
 import { getTopRatedTV } from "~/store/topRatedTVSlice";
 import { getTrendyMovies } from "~/store/trendyMoviesSlice";
 import { getTrendyTV } from "~/store/trendyTVSlice";
@@ -15,7 +18,14 @@ import { getUpcomingMovies } from "~/store/upcomingMoviesSlice";
 import { GenreTypes, MovieTypes } from "~/types/app";
 
 export async function loader() {
-  const [trendyMoviesRes, trendyTVRes, upcomingMoviesRes, genresRes, topMoviesRes, topTVRes] = await Promise.all([
+  const [
+    trendyMoviesRes,
+    trendyTVRes,
+    upcomingMoviesRes,
+    genresRes,
+    topMoviesRes,
+    topTVRes,
+  ] = await Promise.all([
     axios.get("https://api.themoviedb.org/3/trending/movie/day", {
       headers: { Authorization: `Bearer ${process.env.TOKEN}` },
     }),
@@ -73,7 +83,7 @@ export async function loader() {
 
   const genres: GenreTypes[] = await genresRes.data.genres;
 
-  return json({
+  return defer({
     trendyMovies,
     trendyTV,
     topMovies,
@@ -84,13 +94,14 @@ export async function loader() {
 }
 
 const _index = () => {
-  const { trendyMovies, trendyTV, topMovies, topTV, upcomingMovies, genres } = useLoaderData<typeof loader>();
+  const { trendyMovies, trendyTV, topMovies, topTV, upcomingMovies, genres } =
+    useLoaderData<typeof loader>();
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigation()
+  const navigate = useNavigation();
 
   useEffect(() => {
     if (navigate.state === "loading") {
-      dispatch(topRatedMoviesLoading())
+      dispatch(topRatedMoviesLoading());
     }
     dispatch(getTrendyMovies(trendyMovies));
     dispatch(getTrendyTV(trendyTV));
@@ -98,15 +109,31 @@ const _index = () => {
     dispatch(getTopRatedTV(topTV));
     dispatch(getUpcomingMovies(upcomingMovies));
     dispatch(getGenres(genres));
-  }, [dispatch, navigate.state, trendyMovies, trendyTV, topMovies, topTV, genres, upcomingMovies]);
+  }, [
+    dispatch,
+    navigate.state,
+    trendyMovies,
+    trendyTV,
+    topMovies,
+    topTV,
+    genres,
+    upcomingMovies,
+  ]);
 
   return (
     <>
       <HeroSection />
-      <MoviesListSection title={"Trending Today"} variant={"trendy"} cats={["Movies", "Series"]} />
+      <MoviesListSection
+        title={"Trending Today"}
+        variant={"trendy"}
+        cats={["Movies", "Series"]}
+      />
       <MoviesListSection title={"Upcomming"} variant={"upcomming"} />
-      <MoviesListSection title={"Top rated"} variant={"rated"} cats={["Movies", "Series"]} />
-      <MoviesListSection title={"Genres"} variant={"genres"} cats={["Comedy", "Action", "Drama", "Horror", "Romance", "Animation"]} />
+      <MoviesListSection
+        title={"Top rated"}
+        variant={"rated"}
+        cats={["Movies", "Series"]}
+      />
     </>
   );
 };

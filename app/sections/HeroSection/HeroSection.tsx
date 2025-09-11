@@ -20,8 +20,8 @@ const HeroSection = () => {
   const navigate = useNavigate();
 
   return (
-    results.length > 0 && (
-      <section className="w-screen min-h-screen h-screen">
+    <section className="w-screen min-h-screen h-screen">
+      {results.length > 0 ? (
         <Swiper
           modules={[Autoplay]}
           autoplay={{
@@ -81,8 +81,10 @@ const HeroSection = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </section>
-    )
+      ) : (
+        <div className="glassy_dark w-full h-full relative animate-pulse" />
+      )}
+    </section>
   );
 };
 

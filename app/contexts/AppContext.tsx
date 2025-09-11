@@ -3,12 +3,14 @@ import { createContext, useContext, useReducer } from "react";
 
 type AppState = {
   sidebar: boolean;
-  tab: string;
+  trendyTab: string;
+  ratedTab: string;
 };
 
 type AppAction =
   | { type: "sidebar"; payload: boolean }
-  | { type: "tab"; payload: string }
+  | { type: "trendyTab"; payload: string }
+  | { type: "ratedTab"; payload: string };
 
 type AppContextType = {
   state: AppState;
@@ -19,15 +21,18 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const initialState: AppState = {
   sidebar: false,
-  tab: "movies",
+  trendyTab: "movies",
+  ratedTab: "movies",
 };
 
 function AppReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case "sidebar":
       return { ...state, sidebar: action.payload };
-    case "tab":
-      return { ...state, tab: action.payload };
+    case "trendyTab":
+      return { ...state, trendyTab: action.payload };
+    case "ratedTab":
+      return { ...state, ratedTab: action.payload };
     default:
       return state;
   }

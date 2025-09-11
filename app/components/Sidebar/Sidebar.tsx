@@ -8,12 +8,14 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`fixed w-full h-full transition-all duration-500 top-0 ${state.sidebar ? "z-[1000] glassy_black" : "bg-transparent z-[-1]"
-        }`}
+      className={`fixed w-full h-full transition-all duration-500 top-0 ${
+        state.sidebar ? "z-[1000] glassy_black" : "bg-transparent z-[-1]"
+      }`}
     >
       <div
-        className={`fixed top-0 right-0 h-full glassy_dark text-white grid justify-stretch items-start border-[1px] border-solid !border-neutral-800 min-w-[20vw] transition-all ${state.sidebar ? "translate-x-[0%]" : "translate-x-[100%]"
-          }`}
+        className={`fixed top-0 right-0 h-full glassy_dark text-white grid justify-stretch items-start border-[1px] border-solid !border-neutral-800 min-w-[20vw] md:min-w-[60vw] sm:!min-w-full transition-all ${
+          state.sidebar ? "translate-x-[0%]" : "translate-x-[100%]"
+        }`}
       >
         <div className="flex justify-between items-center gap-10 p-6 border-b-[1px] border-b-neutral-800 border-b-solid">
           <h5>My Account</h5>

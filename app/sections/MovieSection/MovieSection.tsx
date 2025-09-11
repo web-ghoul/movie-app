@@ -73,8 +73,8 @@ const MovieSection = () => {
           />
         )}
         <Overlay />
-        <div className="grid justify-stretch items-center gap-6 w-[35vw] 2xl:w-[50vw] lg:w-full text-white z-[10] relative bottom-[20%] 2xl:bottom-[10%]">
-          <div className="grid justify-stretch items-center gap-4">
+        <div className="grid justify-stretch items-center gap-6 w-[35vw] xl:w-[75vw] lg:!w-full text-white z-[10] relative bottom-[20%] xl:bottom-[10%] md:!bottom-0">
+          <div className="grid justify-stretch items-center gap-4 md:gap-3 sm:!gap-2">
             <h1 className="!font-[700] line-clamp-2">{movie.original_title}</h1>
             <div
               className={`grid justify-stretch items-center gap-3 transition-all duration-500  ${
@@ -111,7 +111,7 @@ const MovieSection = () => {
           >
             {movie.overview}
           </h6>
-          <div className="flex flex-wrap justify-stretch item-center gap-6">
+          <div className="flex flex-wrap justify-stretch item-center gap-6 md:gap-5 sm:!gap-4">
             <Button variant="primary">
               <IoPlay />
               Play
