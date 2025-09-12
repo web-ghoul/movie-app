@@ -51,7 +51,7 @@ const MoviesListSection = ({
       : [];
 
   return (
-    <section className="grid justify-stretch items-center gap-6 contain contain_y">
+    <section className="grid justify-stretch items-center gap-6 contain contain_y md:gap-5 sm:!gap-4">
       <div className="flex justify-between items-center gap-4">
         <Title text={title} />
         {cats && (
@@ -68,18 +68,12 @@ const MoviesListSection = ({
       >
         {!topRatedMoviesLoading && movies.length > 0
           ? movies.map((movie, i) => (
-              <SwiperSlide
-                className="!w-[200px] !h-[300px] md:!h-[260px]"
-                key={i}
-              >
+              <SwiperSlide className="!w-[200px] !h-[300px]" key={i}>
                 <MovieCard movie={movie} />
               </SwiperSlide>
             ))
           : Array.from({ length: 20 }).map((_, i) => (
-              <SwiperSlide
-                className="!w-[200px] !h-[300px] md:!h-[260px]"
-                key={i}
-              >
+              <SwiperSlide className="!w-[200px] !h-[300px]" key={i}>
                 <LoadingMovieCard />
               </SwiperSlide>
             ))}

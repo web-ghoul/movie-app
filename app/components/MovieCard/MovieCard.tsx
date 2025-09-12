@@ -11,7 +11,7 @@ const MovieCard = ({ movie }: { movie: MovieTypes }) => {
   return (
     <Link to={`/movie/${movie.id}`}>
       <article
-        className={`w-full h-[300px] lg:h-[280px] sm:!h-[260px] relative transition-all group overflow-hidden flex justify-center items-end group`}
+        className={`w-full h-[300px] relative transition-all group overflow-hidden flex justify-center items-end group`}
       >
         <div
           style={{

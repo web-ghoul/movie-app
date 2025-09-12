@@ -18,9 +18,9 @@ const MoviesSection = ({
   return (
     <section
       id={id}
-      className="grid justify-stretch items-center gap-8 contain contain_y"
+      className="grid justify-stretch items-center gap-6 contain contain_y md:gap-5 sm:!gap-4"
     >
-      <div className="grid justify-stretch items-center gap-1">
+      <div className="grid justify-stretch items-center gap-1 sm:!gap-0">
         <Title text={title} />
         <h6 className="text-neutral-500">{movies.length} results found</h6>
       </div>

@@ -41,7 +41,7 @@ const HeroSection = () => {
                 className="min-h-screen h-full bg-no-repeat bg-center bg-cover grid justify-start items-end contain contain_y relative"
               >
                 <Overlay />
-                <div className="grid justify-stretch items-center gap-6 w-1/2 2xl:w-[60vw] text-white z-[10] relative bottom-[20%] 2xl:bottom-[10%]">
+                <div className="grid justify-stretch items-center gap-6 w-1/2 2xl:w-[60vw] lg:!w-full text-white z-[10] relative bottom-[20%] xl:!bottom-[10%]">
                   <div className="grid justify-stretch items-center gap-3">
                     <h1 className="!font-[700] line-clamp-2">
                       {movie.original_title}

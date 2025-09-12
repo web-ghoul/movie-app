@@ -111,56 +111,6 @@ h6,
     padding-top: 35px;
     padding-bottom: 35px;
   }
-
-  h1,
-  .h1 {
-    font-size: 37.5px;
-  }
-
-  h2,
-  .h2 {
-    font-size: 32.5px;
-  }
-
-  h3,
-  .h3 {
-    font-size: 28.5px;
-  }
-
-  h4,
-  .h4 {
-    font-size: 24px;
-  }
-
-  h5,
-  .h5 {
-    font-size: 19px;
-  }
-
-  h6,
-  .h6 {
-    font-size: 16px;
-  }
-
-  .subtitle_1 {
-    font-size: 13px;
-  }
-
-  .subtitle_2 {
-    font-size: 12px;
-  }
-
-  .body_1 {
-    font-size: 11px;
-  }
-
-  .body_2 {
-    font-size: 9px;
-  }
-
-  .button {
-    font-size: 17px;
-  }
 }
 
 @media (max-width: 992px) {
@@ -172,56 +122,6 @@ h6,
   .contain_y {
     padding-top: 30px;
     padding-bottom: 30px;
-  }
-
-  h1,
-  .h1 {
-    font-size: 36px;
-  }
-
-  h2,
-  .h2 {
-    font-size: 30px;
-  }
-
-  h3,
-  .h3 {
-    font-size: 27px;
-  }
-
-  h4,
-  .h4 {
-    font-size: 22px;
-  }
-
-  h5,
-  .h5 {
-    font-size: 18px;
-  }
-
-  h6,
-  .h6 {
-    font-size: 15px;
-  }
-
-  .subtitle_1 {
-    font-size: 12px;
-  }
-
-  .subtitle_2 {
-    font-size: 11px;
-  }
-
-  .body_1 {
-    font-size: 10px;
-  }
-
-  .body_2 {
-    font-size: 8px;
-  }
-
-  .button {
-    font-size: 16px;
   }
 }
 
@@ -235,56 +135,6 @@ h6,
     padding-top: 25px;
     padding-bottom: 25px;
   }
-
-  h1,
-  .h1 {
-    font-size: 34px;
-  }
-
-  h2,
-  .h2 {
-    font-size: 28px;
-  }
-
-  h3,
-  .h3 {
-    font-size: 25px;
-  }
-
-  h4,
-  .h4 {
-    font-size: 20px;
-  }
-
-  h5,
-  .h5 {
-    font-size: 16px;
-  }
-
-  h6,
-  .h6 {
-    font-size: 13px;
-  }
-
-  .subtitle_1 {
-    font-size: 10px;
-  }
-
-  .subtitle_2 {
-    font-size: 9px;
-  }
-
-  .body_1 {
-    font-size: 8px;
-  }
-
-  .body_2 {
-    font-size: 7px;
-  }
-
-  .button {
-    font-size: 15px;
-  }
 }
 
 @media (max-width: 520px) {
@@ -296,56 +146,6 @@ h6,
   .contain_y {
     padding-top: 20px;
     padding-bottom: 20px;
-  }
-
-  h1,
-  .h1 {
-    font-size: 32px;
-  }
-
-  h2,
-  .h2 {
-    font-size: 26px;
-  }
-
-  h3,
-  .h3 {
-    font-size: 22.5px;
-  }
-
-  h4,
-  .h4 {
-    font-size: 18px;
-  }
-
-  h5,
-  .h5 {
-    font-size: 15px;
-  }
-
-  h6,
-  .h6 {
-    font-size: 12px;
-  }
-
-  .subtitle_1 {
-    font-size: 9px;
-  }
-
-  .subtitle_2 {
-    font-size: 8px;
-  }
-
-  .body_1 {
-    font-size: 7px;
-  }
-
-  .body_2 {
-    font-size: 6px;
-  }
-
-  .button {
-    font-size: 16px;
   }
 }
 
