@@ -5,16 +5,16 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import HeroSection from "~/sections/HeroSection/HeroSection";
 import MoviesListSection from "~/sections/MoviesListSection/MoviesListSection";
-import { getGenres } from "~/store/genresSlice";
+import { genresLoading, getGenres } from "~/store/genresSlice";
 import { AppDispatch } from "~/store/store";
 import {
   getTopRatedMovies,
   topRatedMoviesLoading,
 } from "~/store/topRatedMoviesSlice";
-import { getTopRatedTV } from "~/store/topRatedTVSlice";
-import { getTrendyMovies } from "~/store/trendyMoviesSlice";
-import { getTrendyTV } from "~/store/trendyTVSlice";
-import { getUpcomingMovies } from "~/store/upcomingMoviesSlice";
+import { getTopRatedTV, topRatedTVLoading } from "~/store/topRatedTVSlice";
+import { getTrendyMovies, trendyMoviesLoading } from "~/store/trendyMoviesSlice";
+import { getTrendyTV, trendyTVLoading } from "~/store/trendyTVSlice";
+import { getUpcomingMovies, upcomingMoviesLoading } from "~/store/upcomingMoviesSlice";
 import { GenreTypes, MovieTypes } from "~/types/app";
 
 export async function loader() {
@@ -102,6 +102,11 @@ const _index = () => {
   useEffect(() => {
     if (navigate.state === "loading") {
       dispatch(topRatedMoviesLoading());
+      dispatch(trendyMoviesLoading());
+      dispatch(topRatedTVLoading());
+      dispatch(genresLoading());
+      dispatch(upcomingMoviesLoading());
+      dispatch(trendyTVLoading());
     }
     dispatch(getTrendyMovies(trendyMovies));
     dispatch(getTrendyTV(trendyTV));
