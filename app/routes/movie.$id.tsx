@@ -1,4 +1,4 @@
-import { defer, LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   isRouteErrorResponse,
   useLoaderData,
@@ -19,54 +19,23 @@ import { AppDispatch } from "~/store/store";
 export async function loader({ params }: LoaderFunctionArgs) {
   const { id } = params;
 
-  if (!id) {
-    throw new Response("Movie ID is required", { status: 400 });
-  }
+  if (!id) throw new Response("Movie ID is required", { status: 400 });
 
-  try {
-    const res = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
-      headers: { Authorization: `Bearer ${process.env.TOKEN}` },
-    });
+  const [res, videosRes, genresRes, castRes, similarMoviesRes] = await Promise.all([
+    axios.get(`https://api.themoviedb.org/3/movie/${id}`, { headers: { Authorization: `Bearer ${process.env.TOKEN}` } }),
+    axios.get(`https://api.themoviedb.org/3/movie/${id}/videos`, { headers: { Authorization: `Bearer ${process.env.TOKEN}` } }),
+    axios.get("https://api.themoviedb.org/3/genre/movie/list", { headers: { Authorization: `Bearer ${process.env.TOKEN}` } }),
+    axios.get(`https://api.themoviedb.org/3/movie/${id}/credits`, { headers: { Authorization: `Bearer ${process.env.TOKEN}` } }),
+    axios.get(`https://api.themoviedb.org/3/movie/${id}/similar`, { headers: { Authorization: `Bearer ${process.env.TOKEN}` } }),
+  ]);
 
-    const videosRes = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}/videos`,
-      {
-        headers: { Authorization: `Bearer ${process.env.TOKEN}` },
-      }
-    );
-
-    const genresRes = await axios.get(
-      "https://api.themoviedb.org/3/genre/movie/list",
-      {
-        headers: { Authorization: `Bearer ${process.env.TOKEN}` },
-      }
-    );
-
-    const castRes = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}/credits`,
-      {
-        headers: { Authorization: `Bearer ${process.env.TOKEN}` },
-      }
-    );
-
-    const similarMoviesRes = await axios.get(
-      `https://api.themoviedb.org/3/movie/${id}/similar`,
-      {
-        headers: { Authorization: `Bearer ${process.env.TOKEN}` },
-      }
-    );
-
-    return defer({
-      movie: res.data,
-      videos: videosRes.data.results,
-      genres: genresRes.data.genres,
-      similarMovies: similarMoviesRes.data,
-      cast: castRes.data.cast,
-    });
-  } catch (error) {
-    console.error(error);
-    throw new Response("Movie not found", { status: 404 });
-  }
+  return {
+    movie: res.data,
+    videos: videosRes.data.results,
+    genres: genresRes.data.genres,
+    similarMovies: similarMoviesRes.data,
+    cast: castRes.data.cast,
+  };
 }
 
 export default function MoviePage() {
