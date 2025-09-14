@@ -1,4 +1,4 @@
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { defer, LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import axios from "axios";
 import { useEffect } from "react";
@@ -19,10 +19,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
       type === "all"
         ? "https://api.themoviedb.org/3/search/multi"
         : type === "movie"
-        ? "https://api.themoviedb.org/3/search/movie"
-        : type === "tv"
-        ? "https://api.themoviedb.org/3/search/tv"
-        : "https://api.themoviedb.org/3/search/multi";
+          ? "https://api.themoviedb.org/3/search/movie"
+          : type === "tv"
+            ? "https://api.themoviedb.org/3/search/tv"
+            : "https://api.themoviedb.org/3/search/multi";
 
     const res = await axios.get(`${url}?query=${query}`, {
       headers: { Authorization: `Bearer ${process.env.TOKEN}` },
@@ -35,7 +35,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       total_results: number;
     } = res.data;
 
-    return json({
+    return defer({
       searchResults,
       query,
       trendyMovies: {
@@ -60,7 +60,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     total_results: number;
   } = trendyMoviesRes.data;
 
-  return json({
+  return defer({
     trendyMovies,
     query: "",
     searchResults: {

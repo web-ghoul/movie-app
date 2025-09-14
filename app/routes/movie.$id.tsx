@@ -1,5 +1,4 @@
-// app/routes/movie.$id.tsx
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { defer, LoaderFunctionArgs } from "@remix-run/node";
 import {
   isRouteErrorResponse,
   useLoaderData,
@@ -57,7 +56,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
       }
     );
 
-    return json({
+    return defer({
       movie: res.data,
       videos: videosRes.data.results,
       genres: genresRes.data.genres,
